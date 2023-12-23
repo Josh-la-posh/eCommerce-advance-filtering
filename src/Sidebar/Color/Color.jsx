@@ -1,35 +1,17 @@
+import Input from '../../components/Input';
 import './Color.css';
 
-function Color() {
+function Color({handleChange}) {
   return (
     <div>
       <h2 className="sidebar-title color-title">Color</h2>
       <div>
-
-      <label className="sidebar-label-container">
-          <input type="radio" name='test3' />
-          <span className="checkmark"></span>All
-        </label>
-        <label className="sidebar-label-container">
-          <input type="radio" name='test3' />
-          <span className="checkmark"></span>Black
-        </label>
-        <label className="sidebar-label-container">
-          <input type="radio" name='test3' />
-          <span className="checkmark"></span>Blue
-        </label>
-        <label className="sidebar-label-container">
-          <input type="radio" name='test3' />
-          <span className="checkmark"></span>Red
-        </label>
-        <label className="sidebar-label-container">
-          <input type="radio" name='test3' />
-          <span className="checkmark"></span>Green
-        </label>
-        <label className="sidebar-label-container">
-          <input type="radio" name='test3' />
-          <span className="checkmark"></span>White
-        </label>
+        <Input handleChange={handleChange} value='all' title='All' name='test3' color='linear-gradient(blue,crimson)' />
+        <Input handleChange={handleChange} value='black' title='Black' name='test3' color='black' />
+        <Input handleChange={handleChange} value='blue' title='Blue' name='test3' color='blue' />
+        <Input handleChange={handleChange} value='red' title='Red' name='test3' color='red' />
+        <Input handleChange={handleChange} value='green' title='Green' name='test3' color='green' />
+        <Input handleChange={handleChange} value='white' title='White' name='test3' bdCol='black' />
       </div>
     </div>
   )
