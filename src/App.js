@@ -12,15 +12,15 @@ function App() {
 
   //---------Input Filter ---------
 
-  const handleInputChabge = e => {
+  const handleInputChange = e => {
     setQuery(e.target.value);
   }
 
   const filteredItems = products.filter(product =>
-   product.title.toLocaleLowerCase().indexOf(query.toLocaleLowerCase() !== -1));
+   product.title.toLocaleLowerCase().indexOf(query.toLocaleLowerCase()) !== -1);
 
   //---------Radio Filter ---------
-  const hangdleChange = e => {
+  const handleChange = e => {
     setSelectedCategory(e.target.value)
   }
 
@@ -30,24 +30,28 @@ function App() {
   }
 
   function filteredData(products, selected, query) {
-    let filteredProducts = products
+    let filteredProducts = products;
+    
     //Filtering Input Items
+
     if (query) {
       filteredProducts = filteredItems
     }
 
     //Selected Filter
     if (selected) {
-      filteredProducts = filteredProducts.fitler(
-        ({category, color, company, newPrice, title}) => 
-        category === selected || 
-        color === selected || 
-        company || selected || 
-        newPrice === selected || 
-        title === selected
+      filteredProducts = filteredProducts.filter(
+        (product) => 
+        product.category === selected || 
+        product.color === selected || 
+        product.company || selected || 
+        product.newPrice === selected || 
+        product.title === selected
         );
     }
-    return filteredProducts.map(({img, title, star, reviews, prevPrice, newPrice}) => {
+    return filteredProducts.map(
+      ({img, title, star, reviews, prevPrice, newPrice, category}) =>
+       (
       <Card 
         key={Math.random()}
         img={img}
@@ -56,18 +60,18 @@ function App() {
         reviews={reviews}
         newPrice={newPrice}
         prevPrice={prevPrice}
+        category={category}
       />
-    })
+    ));
   }
-
   const result = filteredData(products, selectedCategory, query);
-
+  
   return (
     <>
-      <Sidebar hangdleChange={hangdleChange}/>
-      <Navigation />
-      <Recommended />
-      <Products />
+      <Sidebar handleChange={handleChange}/>
+      <Navigation query={query} handleInputChange={handleInputChange}/>
+      <Recommended handleClick={handleClick} />
+      <Products result={result}/>
     </>
   );
 }

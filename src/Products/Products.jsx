@@ -1,10 +1,9 @@
-import Card from '../components/card';
 import './Products.css';
 
-function Products() {
+function Products({result}) {
   return (
     <section className="card-container">
-      <Card />
+      {result}
     </section>
   )
 }
